@@ -13,6 +13,11 @@ var HomeView = function(store) {
   this.findByName = function() {
     store.findByName( $('.search-key').val(), function(employees) {
       $('.employee-list').html(HomeView.liTemplate(employees));
+      if(self.iscroll) {
+        self.iscroll.refresh();
+      } else {
+        self.iscroll = new iScroll( $('.scroll', self.el)[0], {hScrollBar: false, vScrollbar: false})
+      }
     });
   };
 
